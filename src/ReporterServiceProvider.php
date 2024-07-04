@@ -12,25 +12,25 @@ final class ReporterServiceProvider extends ServiceProvider
         $this->config = $this->app['config'];
     }
 
-    public function boot(): void
+    public function boot()
     {
         $this->publishConfig();
         $this->registerRoutes();
     }
 
-    public function register(): void
+    public function register()
     {
         $this->registerConfig();
     }
 
-    private function publishConfig(): void
+    private function publishConfig()
     {
         $this->publishes([
             __DIR__ . '/config/config.php' => config_path('reporter.php'),
         ], 'reporter');
     }
 
-    protected function registerConfig(): void
+    protected function registerConfig()
     {
         $this->mergeConfigFrom(
             __DIR__ . '/config/config.php',
@@ -38,7 +38,7 @@ final class ReporterServiceProvider extends ServiceProvider
         );
     }
 
-    protected function registerRoutes(): void
+    protected function registerRoutes()
     {
         $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
     }

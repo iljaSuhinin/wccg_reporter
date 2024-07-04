@@ -4,7 +4,7 @@ namespace Packages\Reporter\Model;
 
 interface Reporter
 {
-    public function getName(): string
+    public function getName();
 
-    public function getValue(): string
+    public function getValue();
 }
