@@ -11,10 +11,10 @@ git clone git@gitlab.com:sip-projects/wccg_reporter.git packages/Reporter
 ],
 
 3) установить пакет
-php composer require packages/reporter:dev-master
+composer require packages/reporter:dev-master
 
 4) установить конфиг
-php artisan vendor:publish 
+php artisan vendor:publish --tag=reporter 
 
 5) конфигурация config/reporter.php:
 наполнить массив reporters, классами реализующими интерфейс Packages\Reporter\Model\Reporter
