@@ -4,6 +4,7 @@ namespace Packages\Reporter\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Log;
 use Packages\Reporter\Model\Reporter;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -19,7 +20,11 @@ class ReportController extends BaseController
         foreach ($reporters as $reporterClass) {
             $reporter = resolve($reporterClass);
             if($reporter instanceof Reporter) {
-                $report[$reporter->getName()] = $reporter->getValue();
+                try {
+                    $report[$reporter->getName()] = $reporter->getValue();
+                } catch (\Exception $e) {
+                    Log::error($e->getMessage().' '.$e->getTraceAsString());
+                }
             }
         }
         return response()->json([
